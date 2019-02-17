@@ -2,6 +2,7 @@ package com.example.umoriliapi;
 
 import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +14,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder> {
+    private static final String TAG = PostsAdapter.class.getSimpleName();
 
     private List<PostModel> posts;
 
-    public PostsAdapter(List<PostModel> posts) {
+    PostsAdapter(List<PostModel> posts) {
         this.posts = posts;
     }
 
+
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item, parent, false);
-        return new ViewHolder(v);
+        return new PostViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         holder.bind(posts.get(position));
     }
 
@@ -39,11 +43,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class PostViewHolder extends RecyclerView.ViewHolder {
         TextView post;
         TextView site;
 
-        ViewHolder(View itemView) {
+        PostViewHolder(View itemView) {
             super(itemView);
             post = itemView.findViewById(R.id.postitem_post);
             site = itemView.findViewById(R.id.postitem_site);
@@ -58,6 +62,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 post.setText(Html.fromHtml(source));
             }
             site.setText(postModel.getSite());
+
+            Log.d(TAG, "Вызов");
         }
     }
 }

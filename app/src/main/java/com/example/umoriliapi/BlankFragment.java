@@ -1,6 +1,7 @@
 package com.example.umoriliapi;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +21,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class BlankFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<PostModel> posts;
+
+    @SuppressLint("Log")
+    private static final String TAG = BlankFragment.class.getSimpleName();
 
     static BlankFragment newInstance() {
         return new BlankFragment();
@@ -47,7 +48,7 @@ public class BlankFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        PostsAdapter adapter = new PostsAdapter(posts);
+        final PostsAdapter adapter = new PostsAdapter(posts);
         recyclerView.setAdapter(adapter);
 
         App.getApi().getData("bash", 50).enqueue(new Callback<List<PostModel>>() {
@@ -61,7 +62,8 @@ public class BlankFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<PostModel>> call, @NonNull Throwable t) {
-                Toast.makeText(requireContext(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "An error occurred during networking", Toast.LENGTH_SHORT)
+                        .show();
             }
         });
     }

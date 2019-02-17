@@ -8,7 +8,6 @@
         android:id="@+id/postitem_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Очень интересный пост с баша, который никто никогда не видел, так как его не существует"
         android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
@@ -16,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:text="Bash.im"
         android:textAlignment="textEnd" />
 
 </LinearLayout>
