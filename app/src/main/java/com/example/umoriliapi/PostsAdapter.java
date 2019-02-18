@@ -2,7 +2,6 @@ package com.example.umoriliapi;
 
 import android.os.Build;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +61,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
                 post.setText(Html.fromHtml(source));
             }
             site.setText(postModel.getSite());
-
-            Log.d(TAG, "Вызов");
         }
     }
 }
